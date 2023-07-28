@@ -1,4 +1,4 @@
-# Imod Container
+# CryoEM Container
 
 Docker image to run various tools for cryoem.
 
