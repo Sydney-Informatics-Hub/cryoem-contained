@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#PBS -P SIHnextgen 
+#PBS -l select=1:ncpus=2:mem=32gb
+#PBS -l walltime=24:00:00
+#PBS -N job_build01
+
+module load singularity
+
+# Assuming you are running this from your project folder, /project/<YOUR_PROJECT>
+cd $PBS_O_WORKDIR
+
+### 1 BUILD IMAGE ###
+# If these are not set, it defaults to your home foler which will fill up very quickly.
+export SINGULARITY_CACHEDIR=`pwd`
+export SINGULARITY_TMPDIR=`pwd`
+/usr/bin/time singularity build cryoem.img docker://sydneyinformaticshub/cryoem
+
+echo "DONE!"
